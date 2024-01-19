@@ -1,0 +1,11 @@
+.container-user {
+    margin-top: 150px;
+}
+
+.dropdown-menu input{
+    margin: 5px;
+}
+
+.no-results-message {
+    text-align: center;
+}
