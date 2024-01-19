@@ -22,6 +22,16 @@ body {
     margin: 5px;
 }
 
+input[type="search"] {
+    border-radius: 10px 0px 10px 0px;
+    outline: none;
+}
+
+input[type="search"]:focus {
+    border-color: #00ff1a; 
+    box-shadow: 0 0 5px rgba(24, 243, 4, 0.778);
+  }
+
 .no-results-message {
     text-align: center;
 }

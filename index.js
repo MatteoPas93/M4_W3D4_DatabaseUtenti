@@ -46,10 +46,10 @@ async function users() {
     utenti.forEach(infoUser => {
         
      containerUser.innerHTML += `<ul class="lista-user">
-                                  <li> <b>Name</b>: ${infoUser.name}, 
-                                  <b> Username </b>: ${infoUser.username},
-                                  <b>Email</b>: ${infoUser.email}, 
-                                  <b>Phone number</b>: ${infoUser.phone}  
+                                  <li> <b>Name</b>: ${infoUser.name}; <br>
+                                  <b> Username</b>: ${infoUser.username}; <br>
+                                  <b>Email</b>: ${infoUser.email}; <br> 
+                                  <b>Phone number</b>: ${infoUser.phone}.  
                                   </li>
                                   </ul>`
                                 });
@@ -83,10 +83,10 @@ function searchNameFunction(event) {
 
     nameResults.forEach(nameUser => {
         const ul = document.createElement("ul");
-        ul.innerHTML = ` <li> <b>Name</b>: ${nameUser.name}, 
-                              <b> Username </b> : ${nameUser.username},
-                              <b> Email </b> : ${nameUser.email}, 
-                              <b> Phone </b> : ${nameUser.phone}
+        ul.innerHTML = ` <li> <b>Name</b>: ${nameUser.name}; <br> 
+                              <b> Username </b> : ${nameUser.username}; <br>
+                              <b> Email </b> : ${nameUser.email}; <br> 
+                              <b> Phone </b> : ${nameUser.phone}.
                          </li> `
         containerUser.appendChild(ul);
         
@@ -109,15 +109,14 @@ function searchEmailFunction(event) {
 
         emailResults.forEach(emailUser => {
             const ul = document.createElement("ul");
-            ul.innerHTML = ` <li> <b>Name</b>: ${emailUser.name}, 
-                                  <b> Username </b> : ${emailUser.username},
-                                  <b> Email </b> : ${emailUser.email}, 
-                                  <b> Phone </b> : ${emailUser.phone}
+            ul.innerHTML = ` <li> <b>Name</b>: ${emailUser.name},; <br>
+                                  <b> Username </b> : ${emailUser.username}; <br>
+                                  <b> Email </b> : ${emailUser.email}; <br>
+                                  <b> Phone </b> : ${emailUser.phone}.
                              </li> `
             containerUser.appendChild(ul);
         });
 };
-
 
 function searchUsernameFunction(event) {
     const username = event.target.value.toLowerCase();
@@ -135,10 +134,10 @@ function searchUsernameFunction(event) {
         
         usernameResults.forEach(usernameUser => {
             const ul = document.createElement("ul");
-            ul.innerHTML = ` <li> <b>Name</b>: ${usernameUser.name},
-                                  <b> Username </b> : ${usernameUser.username},
-                                  <b> Email </b> : ${usernameUser.email}, 
-                                  <b> Phone </b> : ${usernameUser.phone}
+            ul.innerHTML = ` <li> <b>Name</b>: ${usernameUser.name}; <br>
+                                  <b> Username </b> : ${usernameUser.username}; <br>
+                                  <b> Email </b> : ${usernameUser.email}; <br>
+                                  <b> Phone </b> : ${usernameUser.phone}.
                              </li> `
             containerUser.appendChild(ul);
         });
