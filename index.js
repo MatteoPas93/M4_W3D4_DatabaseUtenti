@@ -1,6 +1,7 @@
+// import { searchNameFunction, searchUsernameFunction, searchEmailFunction } from "./components.js";
+
 const utentiApi = "https://jsonplaceholder.typicode.com/users"
 let utenti;
-let containerStart;
 
 
 let nav = document.createElement("nav");
@@ -52,8 +53,6 @@ async function users() {
                                   </li>
                                   </ul>`
                                 });
-
-    containerStart = containerUser.innerHTML
                                 
      const inputName = document.querySelector(".search-name");
      inputName.addEventListener("change", searchNameFunction);

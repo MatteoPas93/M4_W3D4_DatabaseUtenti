@@ -1,5 +1,21 @@
+body {
+    background: linear-gradient(90deg, rgba(73,180,58,0.5803571428571428) 0%, rgba(250,250,217,0.9921218487394958) 46%, rgba(255,250,82,0.5215336134453781) 100%);
+}
+
+.navbar {
+    padding: 0;
+}
+
+.container-fluid {
+    background: rgb(110, 108, 108);
+}
+
 .container-user {
     margin-top: 150px;
+}
+
+.dropdown-menu {
+    background: linear-gradient(90deg, rgba(73,180,58,0.5803571428571428) 0%, rgba(250,250,217,0.9921218487394958) 46%, rgba(255,250,82,0.5215336134453781) 100%);
 }
 
 .dropdown-menu input{
