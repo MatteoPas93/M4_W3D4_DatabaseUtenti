@@ -13,9 +13,12 @@ let containerUser = document.createElement("div");
 containerUser.setAttribute("class", "container-user");
 
 async function users() {
-  const response = await fetch(utentiApi);
-  utenti = await response.json();
-  console.log(utenti);
+  try {
+    const response = await fetch(utentiApi);
+    utenti = await response.json();
+  } catch (error) {
+    console.log(error);
+  }
 
   document.body.appendChild(nav);
 
@@ -54,89 +57,44 @@ async function users() {
   });
 
   const inputName = document.querySelector(".search-name");
-  inputName.addEventListener("change", searchNameFunction);
+  inputName.addEventListener("change", (event) =>
+    searchFunction(event, "name")
+  );
 
   const inputUsername = document.querySelector(".search-username");
-  inputUsername.addEventListener("change", searchUsernameFunction);
+  inputUsername.addEventListener("change", (event) =>
+    searchFunction(event, "username")
+  );
 
   const inputEmail = document.querySelector(".search-email");
-  inputEmail.addEventListener("change", searchEmailFunction);
+  inputEmail.addEventListener("change", (event) =>
+    searchFunction(event, "email")
+  );
 }
 users();
 
-function searchNameFunction(event) {
-  const name = event.target.value.toLowerCase();
-  const nameResults = utenti.filter((user) =>
-    user.name.toLowerCase().includes(name)
+function searchFunction(event, searchValue) {
+  const searchCharacter = event.target.value.toLowerCase();
+  const results = utenti.filter((user) =>
+    user[searchValue].toLowerCase().includes(searchCharacter)
   );
 
   containerUser.innerHTML = "";
 
-  if (nameResults.length === 0) {
+  if (results.length === 0) {
     const noResults = document.createElement("h3");
     noResults.setAttribute("class", "no-results-message");
     noResults.textContent = "Nessun risultato trovato.";
     containerUser.appendChild(noResults);
   }
 
-  nameResults.forEach((nameUser) => {
+  results.forEach((user) => {
     const ul = document.createElement("ul");
-    ul.innerHTML = ` <li> <b>Name</b>: ${nameUser.name}; <br> 
-                              <b> Username </b> : ${nameUser.username}; <br>
-                              <b> Email </b> : ${nameUser.email}; <br> 
-                              <b> Phone </b> : ${nameUser.phone}.
+    ul.innerHTML = ` <li> <b>Name</b>: ${user.name}; <br> 
+                              <b> Username </b> : ${user.username}; <br>
+                              <b> Email </b> : ${user.email}; <br> 
+                              <b> Phone </b> : ${user.phone}.
                          </li> `;
-    containerUser.appendChild(ul);
-  });
-}
-function searchEmailFunction(event) {
-  const email = event.target.value.toLowerCase();
-  const emailResults = utenti.filter((userEmail) =>
-    userEmail.email.toLowerCase().includes(email)
-  );
-
-  containerUser.innerHTML = "";
-
-  if (emailResults.length === 0) {
-    const noResults = document.createElement("h3");
-    noResults.setAttribute("class", "no-results-message");
-    noResults.textContent = "Nessun risultato trovato.";
-    containerUser.appendChild(noResults);
-  }
-
-  emailResults.forEach((emailUser) => {
-    const ul = document.createElement("ul");
-    ul.innerHTML = ` <li> <b>Name</b>: ${emailUser.name},; <br>
-                                  <b> Username </b> : ${emailUser.username}; <br>
-                                  <b> Email </b> : ${emailUser.email}; <br>
-                                  <b> Phone </b> : ${emailUser.phone}.
-                             </li> `;
-    containerUser.appendChild(ul);
-  });
-}
-
-function searchUsernameFunction(event) {
-  const username = event.target.value.toLowerCase();
-  const usernameResults = utenti.filter((userUsername) =>
-    userUsername.username.toLowerCase().includes(username)
-  );
-
-  containerUser.innerHTML = "";
-
-  if (usernameResults.length === 0) {
-    const noResults = document.createElement("h3");
-    noResults.setAttribute("class", "no-results-message");
-    noResults.textContent = "Nessun risultato trovato.";
-    containerUser.appendChild(noResults);
-  }
-
-  usernameResults.forEach((usernameUser) => {
-    const ul = document.createElement("ul");
-    ul.innerHTML = ` <li> <b>Name</b>: ${usernameUser.name}; <br>
-                                  <b> Username </b> : ${usernameUser.username}; <br>
-                                  <b> Email </b> : ${usernameUser.email}; <br>
-                                  <b> Phone </b> : ${usernameUser.phone}.
-                             </li> `;
     containerUser.appendChild(ul);
   });
 }
