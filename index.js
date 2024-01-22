@@ -1,13 +1,10 @@
-// import { searchNameFunction, searchUsernameFunction, searchEmailFunction } from "./components.js";
+import { searchFunction, saveResults} from "./indexFunction.js";
 
 const utentiApi = "https://jsonplaceholder.typicode.com/users";
 let utenti;
 
 let nav = document.createElement("nav");
-nav.setAttribute(
-  "class",
-  "section-nav navbar navbar-expand-lg bg-body-tertiary"
-);
+nav.setAttribute("class", "section-nav navbar navbar-expand-lg bg-body-tertiary");
 
 let containerUser = document.createElement("div");
 containerUser.setAttribute("class", "container-user");
@@ -44,6 +41,17 @@ async function users() {
         </li>
       </ul>
     </div>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ricerche precedenti
+          </a>
+          <ul class="dropdown-menu storage">
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>`;
 
   utenti.forEach((infoUser) => {
@@ -51,50 +59,31 @@ async function users() {
                                   <li> <b>Name</b>: ${infoUser.name}; <br>
                                   <b> Username</b>: ${infoUser.username}; <br>
                                   <b>Email</b>: ${infoUser.email}; <br> 
-                                  <b>Phone number</b>: ${infoUser.phone}.  
+                                  <b>Phone number</b>: ${infoUser.phone}. <br>
+                                  <b> Address</b>:
+                                  <ul> 
+                                  <li> <b> City</b>: ${infoUser.address.city}; </li>
+                                  <li> <b> Street</b>: ${infoUser.address.street}; </li>
+                                  <li> <b> Suite</b>: ${infoUser.address.suite}; </li>
+                                  </ul>
                                   </li>
                                   </ul>`;
   });
 
   const inputName = document.querySelector(".search-name");
   inputName.addEventListener("change", (event) =>
-    searchFunction(event, "name")
+    searchFunction(event, "name", utenti)
   );
 
   const inputUsername = document.querySelector(".search-username");
   inputUsername.addEventListener("change", (event) =>
-    searchFunction(event, "username")
+    searchFunction(event, "username", utenti)
   );
 
   const inputEmail = document.querySelector(".search-email");
   inputEmail.addEventListener("change", (event) =>
-    searchFunction(event, "email")
+    searchFunction(event, "email", utenti)
   );
 }
 users();
 
-function searchFunction(event, searchValue) {
-  const searchCharacter = event.target.value.toLowerCase();
-  const results = utenti.filter((user) =>
-    user[searchValue].toLowerCase().includes(searchCharacter)
-  );
-
-  containerUser.innerHTML = "";
-
-  if (results.length === 0) {
-    const noResults = document.createElement("h3");
-    noResults.setAttribute("class", "no-results-message");
-    noResults.textContent = "Nessun risultato trovato.";
-    containerUser.appendChild(noResults);
-  }
-
-  results.forEach((user) => {
-    const ul = document.createElement("ul");
-    ul.innerHTML = ` <li> <b>Name</b>: ${user.name}; <br> 
-                              <b> Username </b> : ${user.username}; <br>
-                              <b> Email </b> : ${user.email}; <br> 
-                              <b> Phone </b> : ${user.phone}.
-                         </li> `;
-    containerUser.appendChild(ul);
-  });
-}

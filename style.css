@@ -45,3 +45,7 @@ input[type="search"]:focus {
 .no-results-message {
   text-align: center;
 }
+
+.searchList {
+  margin-left: 10px;
+}
