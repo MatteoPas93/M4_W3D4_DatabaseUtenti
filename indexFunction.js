@@ -70,9 +70,10 @@ export function saveResults(searchElement, searchValue) {
   }
 }
 
-function resultList(result, list) {
+function resultList(result) {
+  const ul = document.querySelector(".storage")
   const listItem = document.createElement("li");
   listItem.setAttribute("class", "searchList");
   listItem.textContent = result + ".";
-  list.appendChild(listItem);
+  ul.appendChild(listItem)
 }
