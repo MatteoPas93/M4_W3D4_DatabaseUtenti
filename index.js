@@ -1,10 +1,13 @@
-import { searchFunction, saveResults} from "./indexFunction.js";
+import { searchFunction, saveResults } from "./indexFunction.js";
 
 const utentiApi = "https://jsonplaceholder.typicode.com/users";
 let utenti;
 
 let nav = document.createElement("nav");
-nav.setAttribute("class", "section-nav navbar navbar-expand-lg bg-body-tertiary");
+nav.setAttribute(
+  "class",
+  "section-nav navbar navbar-expand-lg bg-body-tertiary"
+);
 
 let containerUser = document.createElement("div");
 containerUser.setAttribute("class", "container-user");
@@ -86,4 +89,3 @@ async function users() {
   );
 }
 users();
-

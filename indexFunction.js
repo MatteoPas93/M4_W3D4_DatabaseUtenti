@@ -2,12 +2,12 @@ const utentiApi = "https://jsonplaceholder.typicode.com/users";
 let utenti;
 
 export function searchFunction(event, searchValue, utenti) {
-    const containerUser = document.querySelector(".container-user");
-    const searchCharacter = event.target.value.toLowerCase();
-    const results = utenti.filter((user) => 
-        user[searchValue].toLowerCase().includes(searchCharacter)
-    )
-    containerUser.innerHTML = "";
+  const containerUser = document.querySelector(".container-user");
+  const searchCharacter = event.target.value.toLowerCase();
+  const results = utenti.filter((user) =>
+    user[searchValue].toLowerCase().includes(searchCharacter)
+  );
+  containerUser.innerHTML = "";
 
   if (results.length === 0) {
     const noResults = document.createElement("h3");
@@ -24,57 +24,55 @@ export function searchFunction(event, searchValue, utenti) {
                               <b> Phone </b> : ${user.phone}.
                          </li> `;
     containerUser.appendChild(ul);
-});
+  });
 
-if (searchCharacter.length !== 0) {
-     saveResults(searchCharacter, searchValue);
- } 
-};
+  if (searchCharacter.length !== 0) {
+    saveResults(searchCharacter, searchValue);
+  }
+}
 
 let nameElements = [];
 let usernameElements = [];
 let emailElements = [];
 
-export function saveResults (searchElement, searchValue) { 
-    const storageList = document.querySelector(".storage")
-    
+export function saveResults(searchElement, searchValue) {
+  const storageList = document.querySelector(".storage");
 
-    if (searchValue === "name") {
-        nameElements.push(searchElement);
-        localStorage.setItem("Name", JSON.stringify(nameElements));
+  if (searchValue === "name") {
+    nameElements.push(searchElement);
+    localStorage.setItem("Name", JSON.stringify(nameElements));
 
-        storageList.innerHTML = "";
+    storageList.innerHTML = "";
 
-        for (let i = 0; i < nameElements.length; i++) {
-            appendResultToList(nameElements[i], storageList);
-        };
-    };
-    if (searchValue === "username") {
-        usernameElements.push(searchElement)
-        localStorage.setItem("Username", JSON.stringify(usernameElements));
+    for (let i = 0; i < nameElements.length; i++) {
+     resultList(nameElements[i], storageList);
+    }
+  }
+  if (searchValue === "username") {
+    usernameElements.push(searchElement);
+    localStorage.setItem("Username", JSON.stringify(usernameElements));
 
-          storageList.innerHTML = "";
+    storageList.innerHTML = "";
 
-        for (let i = 0; i < usernameElements.length; i++) {
-            appendResultToList(usernameElements[i], storageList)
-        };
-    };
-    if (searchValue === "email") {
-        emailElements.push(searchElement)
-        localStorage.setItem("Email", JSON.stringify(emailElements));
+    for (let i = 0; i < usernameElements.length; i++) {
+     resultList(usernameElements[i], storageList);
+    }
+  }
+  if (searchValue === "email") {
+    emailElements.push(searchElement);
+    localStorage.setItem("Email", JSON.stringify(emailElements));
 
-        storageList.innerHTML = "";
+    storageList.innerHTML = "";
 
-        for (let i = 0; i < emailElements.length; i++) {
-            appendResultToList(emailElements[i], storageList)
-        };
-    };
+    for (let i = 0; i < emailElements.length; i++) {
+     resultList(emailElements[i], storageList);
+    }
+  }
 }
 
-
-function appendResultToList(result, list) {
-    const listItem = document.createElement("li");
-    listItem.setAttribute("class", "searchList")
-    listItem.textContent = result + ".";
-    list.appendChild(listItem);
+function resultList(result, list) {
+  const listItem = document.createElement("li");
+  listItem.setAttribute("class", "searchList");
+  listItem.textContent = result + ".";
+  list.appendChild(listItem);
 }
